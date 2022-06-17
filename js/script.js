@@ -1,18 +1,11 @@
 const key = config.MY_API_KEY
 
-
-
-function searchRest () {
-    const encodedParams = new URLSearchParams();
-    encodedParams.append("language", "en_US");
-    encodedParams.append("limit", "30");
-    encodedParams.append("location_id", searchId() );
-    encodedParams.append("currency", "USD");
-    
-        const restaurantList = {
-            function searchId () {
+function searchRest (event) {
+    event.preventDefault();
+    function getCityId () {
+        const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
-        encodedParams.append("q", $("#searchBar").val());
+        encodedParams.append("q", cityName);
         encodedParams.append("language", "en_US");
 
         const options = {
@@ -38,12 +31,27 @@ function searchRest () {
             localStorage.setItem("city id", JSON.stringify(data))
         })
         .catch((error) => console.error("FETCH ERROR:", error));
-};
-    }
+    
+    };
+
+    getCityId();
+
+    let cityData = JSON.parse(localStorage.getItem("city id"));
+    console.log(cityData)
+
+    let name = cityData.results.data[0].result_object.location_id;
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("language", "en_US");
+    encodedParams.append("limit", "30");
+    encodedParams.append("location_id", name);
+    encodedParams.append("currency", "USD");
+    
+
+        
     const options = {
         method: 'POST',
         headers: {
-            'content-type': '',
+            'content-type': 'application/x-www-form-urlencoded',
             'X-RapidAPI-Key': key,
             'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com'
         },
@@ -63,4 +71,6 @@ function searchRest () {
         localStorage.setItem("restaurants", JSON.stringify(data))
       })
       .catch((error) => console.error("FETCH ERROR:", error));
-}
+};
+
+$('#restaurant-search').on('click', searchRest);
