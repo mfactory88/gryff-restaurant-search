@@ -74,6 +74,7 @@ function searchRest (event) {
       })
       .catch((error) => console.error("FETCH ERROR:", error));
 
+
       showResults();
 };
 
@@ -85,7 +86,9 @@ function showResults () {
 
     for (i = 0; i < 10; i++) {
         let restBox = document.createElement("div");
-        restBox.innerHTML = "<h2>" + restaurants.results.data[i].name;
+        restBox.className = "restaurant-box";
+
+        restBox.innerHTML = "<h2>" + restaurants.results.data[i].name + "</h2><br><p>" + restaurants.results.data[i].description + "</p>";
 
         restRow.appendChild(restBox);
     };
