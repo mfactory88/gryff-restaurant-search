@@ -80,9 +80,10 @@ header nav button {
     border:#393e41 .5rem solid
 }
 
-
-
-
-
-
-
+@media screen and (max-width: 600px) {
+    .search-criteria {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+}
