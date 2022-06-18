@@ -1,5 +1,7 @@
 //const key = config.MY_API_KEY
 
+let results = document.querySelector("#results");
+
 function searchRest (event) {
     event.preventDefault();
     function getCityId () {
@@ -69,8 +71,29 @@ function searchRest (event) {
         .then(data => {
         console.log(data);
         localStorage.setItem("restaurants", JSON.stringify(data))
-        })
-        .catch((error) => console.error("FETCH ERROR:", error));
+      })
+      .catch((error) => console.error("FETCH ERROR:", error));
+
+
+      showResults();
 };
 
-$('#search-button').on('click', searchRest);
+function showResults () {
+    let restRow = document.createElement("div");
+    restRow.className = "results"
+
+    let restaurants = JSON.parse(localStorage.getItem("restaurants"));
+
+    for (i = 0; i < 10; i++) {
+        let restBox = document.createElement("div");
+        restBox.className = "restaurant-box";
+
+        restBox.innerHTML = "<h2>" + restaurants.results.data[i].name + "</h2><br><p>" + restaurants.results.data[i].description + "</p>";
+
+        restRow.appendChild(restBox);
+    };
+
+    results.appendChild(restRow);    
+}
+
+$('#restaurant-search').on('click', searchRest);
