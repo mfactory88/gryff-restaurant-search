@@ -1,6 +1,17 @@
-//const key = config.MY_API_KEY
+const key = config.MY_API_KEY
 
-let results = document.querySelector("#results");
+var images = ['image1.jpg', 'image2.jpg', 'image3.jpg'],
+    index  = 0,
+    $top   = $('#hero');
+
+setInterval(function() {
+   $top.animate({ opacity: 0 }, 500, function() {
+     $top.css('background-image', 'url('+images[++index]+')');
+     $top.animate({ opacity: 1 }, 500, function() {
+       if(index === images.length) index = 0;
+     });
+   });
+}, 6000);
 
 function searchRest (event) {
     event.preventDefault();
@@ -63,37 +74,16 @@ function searchRest (event) {
     fetch('https://worldwide-restaurants.p.rapidapi.com/search', options)
     .then((response) => {
         if (response.ok) {
-            return response.json();
+          return response.json();
         } else {
-            throw new Error("Sorry, we were unable to complete your request.");
+          throw new Error("Sorry, we were unable to complete your request.");
         }
-        })
-        .then(data => {
+      })
+      .then(data => {
         console.log(data);
         localStorage.setItem("restaurants", JSON.stringify(data))
       })
       .catch((error) => console.error("FETCH ERROR:", error));
-
-
-      showResults();
 };
-
-function showResults () {
-    let restRow = document.createElement("div");
-    restRow.className = "results"
-
-    let restaurants = JSON.parse(localStorage.getItem("restaurants"));
-
-    for (i = 0; i < 10; i++) {
-        let restBox = document.createElement("div");
-        restBox.className = "restaurant-box";
-
-        restBox.innerHTML = "<h2>" + restaurants.results.data[i].name + "</h2><br><p>" + restaurants.results.data[i].description + "</p>";
-
-        restRow.appendChild(restBox);
-    };
-
-    results.appendChild(restRow);    
-}
 
 $('#restaurant-search').on('click', searchRest);

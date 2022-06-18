@@ -12,40 +12,44 @@
 <body>
     <header>
         <h1>Mega<span>Bytes</span></h1>
-        <nav>
-            <button>Home</button>
-            <button>Search</button>
-            <button>Recently Viewed</button>
+        <nav id="nav">
+            <button class="button">Home</button>
+            <button class="button">Search</button>
+            <button class="button">Recently Viewed</button>
         </nav>
     </header>
-    <section class="hero">
+    <section class="hero" id="hero">
         <h2>Slogan</h2>
-        <input id="search-bar" type="search" placeholder="search"/>
-        <form class="search-criteria">
-            <select id="category 1">
-                    <option label="Cuisine Type" value="a"></option>
-                    <option label="b" value="b"></option>
-                    <option label="c" value="c"></option>
-            </select>
-            <select id="category 2">
-                <option label="Dietary Restrictions" value="a"></option>
-                <option label="Halaal" value="b"></option>
-                <option label="c" value="c"></option>
-            </select>
-            <select id="category 3">
-                <option label="Price Range" value="a"></option>
-                <option label="b" value="b"></option>
-                <option label="c" value="c"></option>
-            </select>
-            <button id="restaurant-search">SEARCH RESTAURANTS</button>
-        </form>
+        <div class="container">
+            <div id="search-container">        
+                <input id="search-bar" type="search" placeholder="search"/>
+                <button id="search-button" class="button">SEARCH RESTAURANTS</button>
+            </div>
+            <form class="search-criteria">
+                <select id="category 1">
+                        <option class="options" label="Cuisine Type" value="a"></option>
+                        <option class="options" label="b" value="b"></option>
+                        <option class="options" label="c" value="c"></option>
+                </select>
+                <select id="category 2">
+                    <option class="options" label="Dietary Restrictions" value="a"></option>
+                    <option class="options" label="Halaal" value="b"></option>
+                    <option class="options" label="c" value="c"></option>
+                </select>
+                <select id="category 3">
+                    <option class="options" label="Price Range" value="a"></option>
+                    <option class="options" label="b" value="b"></option>
+                    <option class="options" label="c" value="c"></option>
+                </select>
+            </form>  
+        </div>
     </section>
 
     <section id="results" class="results">
     </section>
 
     <footer> <p>Copyright © 2022 by smallbytes</p>
-        <a href="">Back to top</a>
+        <a href="#nav">Back to top</a>
     </footer>
     
     <!--Jquery script here-->
