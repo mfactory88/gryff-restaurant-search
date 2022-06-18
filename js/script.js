@@ -1,9 +1,21 @@
-//const key = config.MY_API_KEY
+const key = config.MY_API_KEY
 
-let results = document.querySelector("#results");
+let resultsEl = document.querySelector("#results");
+const cityData = {};
+const cities = [];
+const results = {};
+
+function storeResults () {
+    cities.push(results);
+    cityData.cities = cities;
+
+    localStorage.setItem("city data", JSON.stringify(cityData))
+    console.log(cityData);
+}
 
 function searchRest (event) {
     event.preventDefault();
+
     function getCityId () {
         const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
@@ -30,15 +42,17 @@ function searchRest (event) {
         })
         .then(data => {
             console.log(data);
-            localStorage.setItem("city id", JSON.stringify(data))
+            results.id = data
+            
         })
         .catch((error) => console.error("FETCH ERROR:", error));
+        storeResults();
     
     };
 
     getCityId();
 
-    let cityData = JSON.parse(localStorage.getItem("city id"));
+    let cityData = JSON.parse(localStorage.getItem("city data"));
     console.log(cityData)
 
     let name = cityData.results.data[0].result_object.location_id;
@@ -70,30 +84,31 @@ function searchRest (event) {
         })
         .then(data => {
         console.log(data);
-        localStorage.setItem("restaurants", JSON.stringify(data))
+        results.restaurants = JSON.stringify(data);
       })
       .catch((error) => console.error("FETCH ERROR:", error));
 
 
-      showResults();
+    //   showResults();
+    
 };
 
-function showResults () {
-    let restRow = document.createElement("div");
-    restRow.className = "results"
+// function showResults () {
+//     let restRow = document.createElement("div");
+//     restRow.className = "results"
 
-    let restaurants = JSON.parse(localStorage.getItem("restaurants"));
+//     let restaurants = JSON.parse(localStorage.getItem("restaurants"));
 
-    for (i = 0; i < 10; i++) {
-        let restBox = document.createElement("div");
-        restBox.className = "restaurant-box";
+//     for (i = 0; i < 10; i++) {
+//         let restBox = document.createElement("div");
+//         restBox.className = "restaurant-box";
 
-        restBox.innerHTML = "<h2>" + restaurants.results.data[i].name + "</h2><br><p>" + restaurants.results.data[i].description + "</p>";
+//         restBox.innerHTML = "<h2>" + restaurants.results.data[i].name + "</h2><br><p>" + restaurants.results.data[i].description + "</p>";
 
-        restRow.appendChild(restBox);
-    };
+//         restRow.appendChild(restBox);
+//     };
 
-    results.appendChild(restRow);    
-}
+//     resultsEl.appendChild(restRow);    
+// }
 
-$('#restaurant-search').on('click', searchRest);
+$('#search-button').on('click', searchRest);
