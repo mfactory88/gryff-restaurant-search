@@ -1,8 +1,10 @@
-//const key = config.MY_API_KEY
+const key = config.MY_API_KEY
 
-function searchRest (event) {
-    event.preventDefault();
-    function getCityId () {
+let resultsEl = document.querySelector("#results");
+const cities = [];
+
+function getCityId () {
+
         const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
         encodedParams.append("q", cityName);
@@ -28,18 +30,24 @@ function searchRest (event) {
         })
         .then(data => {
             console.log(data);
-            localStorage.setItem("city id", JSON.stringify(data))
+            cities.push(cityName)
+            let cityData = JSON.stringify(data)
+            localStorage.setItem("cities", JSON.stringify(cities))
+            localStorage.setItem("ID", cityData);
         })
         .catch((error) => console.error("FETCH ERROR:", error));
+
+    searchRest();
     
-    };
+};
 
-    getCityId();
+function searchRest () {
 
-    let cityData = JSON.parse(localStorage.getItem("city id"));
-    console.log(cityData)
 
-    let name = cityData.results.data[0].result_object.location_id;
+    let city = JSON.parse(localStorage.getItem("ID"));
+    console.log(city)
+
+    let name = city.results.data[0].result_object.location_id;
     const encodedParams = new URLSearchParams();
     encodedParams.append("language", "en_US");
     encodedParams.append("limit", "30");
@@ -68,9 +76,14 @@ function searchRest (event) {
         })
         .then(data => {
         console.log(data);
-        localStorage.setItem("restaurants", JSON.stringify(data))
-        })
-        .catch((error) => console.error("FETCH ERROR:", error));
+        let results = JSON.stringify(data)
+        localStorage.setItem("results", results);
+      })
+      .catch((error) => console.error("FETCH ERROR:", error));
+
+
+      showResults();
+    
 };
 
 $('#search-button').on('click', searchRest);

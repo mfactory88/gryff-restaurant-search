@@ -94,7 +94,14 @@ color: #f9c80e;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
     border: #393e41 solid .5rem;
+}
+
+.restaurant-box {
+    display: flex;
+    flex-direction: column;
+    border: solid black .5rem;
 }
 
 .box-container {
