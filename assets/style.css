@@ -18,19 +18,12 @@ header h1 span {
 color: #f9c80e;
 }
 
-header nav {
-    margin: 1rem 1rem 1rem 1rem;
-}
-
-header nav button {
-    display: inline-flex;
-    flex-wrap: wrap;
+.navbar {
+    display: flex;
     margin:1rem auto;
-    padding: 1rem auto;
-    border:black solid 1px;
+    padding: 0 24px;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
 }
 
 .hero {
@@ -115,10 +108,26 @@ header nav button {
     border:#393e41 .5rem solid
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 630px) {
     .search-criteria {
         flex-direction: column;
         width: 100%;
         gap: 1rem;
+    }
+    #search-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    header h1 {
+        font-weight:bold;
+        font-size: 36px;
+        width: 100%;
+        color: #ff6f59;
+        display: center;
+        justify-content: center;
+    }
+    header h1 span {
+        color: #f9c80e;
     }
 }
