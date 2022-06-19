@@ -1,10 +1,21 @@
 const key = config.MY_API_KEY
 
-let resultsEl = document.querySelector("#results");
-const cities = [];
+var images = ['image1.jpg', 'image2.jpg', 'image3.jpg'],
+    index  = 0,
+    $top   = $('#hero');
 
-function getCityId () {
+setInterval(function() {
+   $top.animate({ opacity: 0 }, 500, function() {
+     $top.css('background-image', 'url('+images[++index]+')');
+     $top.animate({ opacity: 1 }, 500, function() {
+       if(index === images.length) index = 0;
+     });
+   });
+}, 6000);
 
+function searchRest (event) {
+    event.preventDefault();
+    function getCityId () {
         const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
         encodedParams.append("q", cityName);
@@ -30,24 +41,18 @@ function getCityId () {
         })
         .then(data => {
             console.log(data);
-            cities.push(cityName)
-            let cityData = JSON.stringify(data)
-            localStorage.setItem("cities", JSON.stringify(cities))
-            localStorage.setItem("ID", cityData);
+            localStorage.setItem("city id", JSON.stringify(data))
         })
         .catch((error) => console.error("FETCH ERROR:", error));
-
-    searchRest();
     
-};
+    };
 
-function searchRest () {
+    getCityId();
 
+    let cityData = JSON.parse(localStorage.getItem("city id"));
+    console.log(cityData)
 
-    let city = JSON.parse(localStorage.getItem("ID"));
-    console.log(city)
-
-    let name = city.results.data[0].result_object.location_id;
+    let name = cityData.results.data[0].result_object.location_id;
     const encodedParams = new URLSearchParams();
     encodedParams.append("language", "en_US");
     encodedParams.append("limit", "30");
@@ -69,47 +74,16 @@ function searchRest () {
     fetch('https://worldwide-restaurants.p.rapidapi.com/search', options)
     .then((response) => {
         if (response.ok) {
-            return response.json();
+          return response.json();
         } else {
-            throw new Error("Sorry, we were unable to complete your request.");
+          throw new Error("Sorry, we were unable to complete your request.");
         }
-        })
-        .then(data => {
+      })
+      .then(data => {
         console.log(data);
-        let results = JSON.stringify(data)
-        localStorage.setItem("results", results);
+        localStorage.setItem("restaurants", JSON.stringify(data))
       })
       .catch((error) => console.error("FETCH ERROR:", error));
-
-
-      showResults();
-    
 };
 
-function showResults () {
-    let restRow = document.createElement("div");
-    restRow.className = "results"
-
-    let cityId = JSON.parse(localStorage.getItem("results"));
-
-    for (i = 0; i < 10; i++) {
-        let restBox = document.createElement("div");
-        restBox.className = "restaurant-box";
-
-        restPic = document.createElement("div")
-        restPic.innerHTML = "<img src=" + cityId.results.data[i].photo.images.thumbnail.url + ">"
-
-        restTitle = document.createElement("h2");
-        restTitle.textContent = cityId.results.data[i].name
-
-        restPrice = document.createElement("div");
-        restPrice.innerHTML = "<h3>" + cityId.results.data[i].price_level + "<span>" + cityId.results.data[i].price + "</span></h3>"
-
-        restBox.append(restPic, restTitle, restPrice)
-        restRow.appendChild(restBox);
-    };
-
-    resultsEl.appendChild(restRow);    
-}
-
-$('#search-button').on('click', getCityId);
+$('#restaurant-search').on('click', searchRest);
