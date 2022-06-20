@@ -35,7 +35,7 @@ header nav button {
 
 .hero {
     justify-content: center;
-    background-color: white;
+    background-image: url(./images/image3.jpg);
     border: #393e41 solid .5rem;
     padding: 3rem;
     background-size: cover;
@@ -99,16 +99,39 @@ header nav button {
     padding: 10rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     border: #393e41 solid .5rem;
+    background-color: #393e41;
 }
 
 .restaurant-box {
     display: flex;
     flex-direction: column;
-    border: solid black .5rem;
+    align-items: center;
+    border: solid black .25rem;
+    border-radius: 10%;
+    background-color: #5f676c;
+}
+
+.restaurant-box h2 {
+    color:#ff6f59;
+    font-weight: bold;
+    text-shadow: 0 0 2px black;
+}
+
+.restaurant-image {
+    width: fit-content;
+}
+
+.cuisine-type {
+    color:#f9c80e;
+    text-shadow: 0 0 2px black;
+}
+
+.rest-price {
+    color: #FFFFFF;
 }
 
 .box-container {
