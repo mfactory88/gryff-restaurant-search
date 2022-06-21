@@ -19,7 +19,7 @@
                 <input type='checkbox' id='check' />
                 <span class="menu">
                     <li><a href="">Home</a></li>
-                    <li><a href="">Products</a></li>
+                    <li><a href="">Search</a></li>
                     <li><a href="">Favorites</a></li>
                     <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
                 </span>
@@ -28,10 +28,10 @@
         </nav>
     </header>
     <section class="hero" id="hero">
-        <h2>Slogan</h2>
+        <h2></h2>
         <div class="container">
             <div id="search-container">        
-                <input id="search-bar" type="search" placeholder="search"/>
+                <input id="search-bar" type="search" placeholder="Enter a Location"/>
                 <button id="search-button" class="button">SEARCH RESTAURANTS</button>
             </div>
             <form class="search-criteria">
@@ -58,6 +58,8 @@
 
     <section id="results" class="results">
     </section>
+    <div id="map"></div>
+
     <footer> <p>Copyright © 2022 by smallbytes</p>
         <a href="#nav">Back to top</a>
     </footer>
@@ -66,7 +68,10 @@
     <!--Jquery script here-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-    <script src="https://kit.fontawesome.com/script.js" crossorigin="anonymous"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+    defer
+  ></script>
     <script type="text/javascript" src="./config.js"></script>
     <script src="./js/script.js"></script>
 </body>
