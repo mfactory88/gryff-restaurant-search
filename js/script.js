@@ -1,10 +1,14 @@
-const key = config.MY_API_KEY
+// API key, hidden 
+const key = config.MY_API_KEY;
+const googleKey = config.GOOGLE_KEY;
 
+// Global Variables
 let resultsEl = document.querySelector("#results");
 const cities = [];
 let cityData = {};
 let cityRestaurants = {};
 
+// This function converts the entered location into a location ID
 function getCityId() {
     
         const cityName = $("#search-bar").val();
@@ -22,6 +26,7 @@ function getCityId() {
             body: encodedParams
         };
 
+        // getting information from the server
         fetch('https://worldwide-restaurants.p.rapidapi.com/typeahead', options)
         .then((response) => {
             if (response.ok) {
@@ -32,7 +37,9 @@ function getCityId() {
         })
         .then(data => {
             console.log(data);
+            // pushes the city to an array, which is then saved to localstorage
             cities.push(cityName)
+            // pushes the returned data to an object, which will be called later
             cityData = data
             localStorage.setItem("cities", JSON.stringify(cities))
         })
@@ -42,22 +49,7 @@ function getCityId() {
     
 };
 
-// function chooseCity () {
-//     let choices = document.createElement("div")
-//     choices.className = "city-choice";
-
-//     for (let i = 0; i < cityData.results.data.length; i++) {
-//         let city = document.createElement("button")
-//         city.id = "city-" + JSON.stringify(cityData.results.data[i].result_object.location_string)
-//         city.textContent = cityData.results.data[i].result_object.location_string
-
-//        choices.appendChild(city)
-//        $('#city-' + JSON.stringify(cityData.results.data[i].result_object.location_string)).on('click', searchRest);
-//     }
-     
-//     resultsEl.appendChild(choices)
-// }
-
+// this is the function to search for the highest rated restaurants, using the city ID returned from the previous function
 function searchRest() {
     
     console.log(cityData)
@@ -91,6 +83,7 @@ function searchRest() {
         })
         .then(data => {
         console.log(data);
+        // pushes data to object
         cityRestaurants = data;
       })
       .catch((error) => console.error("FETCH ERROR:", error));
@@ -100,11 +93,13 @@ function searchRest() {
     
 };
 
+// displaying the returned results on the page
 function showResults () {
     let restRow = document.createElement("div");
     restRow.className = "results"
     console.log(cityRestaurants);
 
+    // results are returned in an array, this loops through the results to display them on the page
     for (let i = 0; i < 10; i++) {
         let restBox = document.createElement("div");
         restBox.className = "restaurant-box";
@@ -119,7 +114,7 @@ function showResults () {
         
         restType = document.createElement("h3")
         restType.className = "cuisine-type";
-        restType.textContent = cityRestaurants.results.data[i].cuisine[0].name
+        restType.textContent = cityRestaurants.results.data[i].cuisine[0].name + ", " + cityRestaurants.results.data[i].cuisine[1].name
         
 
         restPrice = document.createElement("div");
@@ -129,13 +124,40 @@ function showResults () {
         restBox.append(restPic, restTitle, restType, restPrice)
         restRow.appendChild(restBox);
 
-        // let restMap = document.createElement("div");
-        // restMap.innerHTML = "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13826.508551359952!2d-95.5512289!3d29.96140185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1655759798004!5m2!1sen!2sus" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
+       
     };
 
-    resultsEl.appendChild(restRow);    
+    resultsEl.appendChild(restRow);   
+    initMap(); 
 }
 
+function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: { lat: cityData.results.data[0].latitude, lng: cityData.results.data[0].longitude },
+    });
+    const infoWindow = new google.maps.InfoWindow({
+        content: "",
+        disableAutoPan: true,
+    });
+
+    // Add some markers to the map.
+    const eqfeed_callback = function (cityData) {
+        for (let i = 0; i < cityData.results.data.length; i++) {
+          const coords = [cityData.results.data[i].latitude, cityData.results.data[i].longitude];
+          const latLng = new google.maps.LatLng(coords[1], coords[0]);
+      
+          new google.maps.Marker({
+            position: latLng,
+            map: map,
+          });
+        }
+      };
+    window.eqfeed_callback = eqfeed_callback;
+};
+
+
+// autocomplete function
 // $( function () {
 //     let availableCity = [];
 //     const options = {
@@ -160,11 +182,11 @@ function showResults () {
 //       })
 //       .catch((error) => console.error("FETCH ERROR:", error));
 
-//     for (let i = 0; i < availableCity.predictions.length; i++) {
+ 
 //         $('#search-bar').autocomplete({
-//             source: availableCity.predictions[i]
+//             source: availableCity.predictions
 //         });
-//     };
+    
 // });
 
 $('#search-button').on('click', getCityId);

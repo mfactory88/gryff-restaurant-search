@@ -96,7 +96,6 @@ header nav button {
 
 .results {
     background-color: white;
-    padding: 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
