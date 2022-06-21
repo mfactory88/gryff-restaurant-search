@@ -1,4 +1,4 @@
-# Asutin, Texas Resturant Guide
+# Resturant Search Guide
 
 ## Table of Contents
 
