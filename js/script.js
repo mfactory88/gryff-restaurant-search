@@ -87,40 +87,4 @@ function searchRest () {
 };
 
 $('#search-button').on('click', searchRest);
-
-// media query with topnav
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += "responsive";
-    } else {
-        x.className = "topnav"
-    }
-}
-function showResults () {
-    let restRow = document.createElement("div");
-    restRow.className = "results"
-
-    let cityId = JSON.parse(localStorage.getItem("results"));
-
-    for (i = 0; i < 10; i++) {
-        let restBox = document.createElement("div");
-        restBox.className = "restaurant-box";
-
-        restPic = document.createElement("div")
-        restPic.innerHTML = "<img src=" + cityId.results.data[i].photo.images.thumbnail.url + ">"
-
-        restTitle = document.createElement("h2");
-        restTitle.textContent = cityId.results.data[i].name
-
-        restPrice = document.createElement("div");
-        restPrice.innerHTML = "<h3>" + cityId.results.data[i].price_level + "<span>" + cityId.results.data[i].price + "</span></h3>"
-
-        restBox.append(restPic, restTitle, restPrice)
-        restRow.appendChild(restBox);
-    };
-
-    resultsEl.appendChild(restRow);    
-}
-
 $('#search-button').on('click', getCityId);
