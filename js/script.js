@@ -105,23 +105,24 @@ function showResults () {
     // results are returned in an array, this loops through the results to display them on the page
     for (let i = 0; i < 10; i++) {
         let restBox = document.createElement("div");
-        restBox.className = "restaurant-box";
+        restBox.className = "restaurant-box card";
 
         restPic = document.createElement("div")
-        restPic.className = "restaurant-image"
+        restPic.className = "restaurant-image card-image"
         restPic.innerHTML = "<img src=" + cityRestaurants.results.data[i].photo.images.small.url + ">"
 
         restTitle = document.createElement("h2");
+        restTitle.className = "title is-centered"
         restTitle.textContent = cityRestaurants.results.data[i].name
 
         
         restType = document.createElement("h3")
-        restType.className = "cuisine-type";
+        restType.className = "cuisine-type subtitle is-centered";
         restType.textContent = cityRestaurants.results.data[i].cuisine[0].name + ", " + cityRestaurants.results.data[i].cuisine[1].name
         
 
         restPrice = document.createElement("div");
-        restPrice.className = "rest-price"
+        restPrice.className = "rest-price "
         restPrice.innerHTML = "<h3>" + cityRestaurants.results.data[i].price_level + "</h3>"
 
         restBox.append(restPic, restTitle, restType, restPrice)
@@ -137,7 +138,7 @@ function showResults () {
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
-        center: { lat: cityData.results.data[0].latitude, lng: cityData.results.data[0].longitude },
+        center: { lat: cityData.results.data[0].latitude.value, lng: cityData.results.data[0].longitude.value },
     });
     const infoWindow = new google.maps.InfoWindow({
         content: "",
