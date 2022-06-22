@@ -151,25 +151,33 @@ header nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
+    align-items: flex-start;
+    flex-direction: column;
     border: #393e41 solid .5rem;
     background-color: #393e41;
+    width: 100%;
 }
 
 .restaurant-box {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     border: solid black .25rem;
-    border-radius: 10%;
     background-color: #5f676c;
+    width: 100%;
 }
 
 .restaurant-box h2 {
     color:#ff6f59;
     font-weight: bold;
     text-shadow: 0 0 2px black;
+}
+
+.description {
+    color: #FFFFFF;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
 }
 
 .restaurant-image {
@@ -196,11 +204,10 @@ header nav {
     border:#393e41 .5rem solid
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+.map {
+    height: 500px;
 }
+
 
 @media screen and (max-width: 768px) {
     .search-criteria {

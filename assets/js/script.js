@@ -106,9 +106,12 @@ function showResults () {
         let restBox = document.createElement("div");
         restBox.className = "restaurant-box card";
 
+        let restInfo = document.createElement("div")
+        restInfo.className = "is-one-third-desktop column "
+
         restPic = document.createElement("div")
         restPic.className = "restaurant-image card-image"
-        restPic.innerHTML = "<img src=" + cityRestaurants.results.data[i].photo.images.small.url + ">"
+        restPic.innerHTML = "<img src=" + cityRestaurants.results.data[i].photo.images.large.url + ">"
 
         restTitle = document.createElement("h2");
         restTitle.className = "title is-centered"
@@ -124,40 +127,50 @@ function showResults () {
         restPrice.className = "rest-price "
         restPrice.innerHTML = "<h3>" + cityRestaurants.results.data[i].price_level + "</h3>"
 
-        restBox.append(restPic, restTitle, restType, restPrice)
-        restRow.appendChild(restBox);
+        restDesc = document.createElement("div")
+        restDesc.className = 'description is-one-third-desktop column '
 
+        restDescript = document.createElement('p')
+        restDescript.textContent = cityRestaurants.results.data[i].description
+
+        restLink = document.createElement("div")
+        restLink.innerHTML = "<p>See more information at <a href='" + cityRestaurants.results.data[i].web_url + "'>" + cityRestaurants.results.data[i].web_url + "</a>"
+
+        
+
+        restMap = document.createElement("div")
+        restMap.id = "map" + [i]
+        restMap.className = "map is-one-third-desktop column "
+
+        function initMap() {
+        
+        const mark = { lat: parseFloat(cityRestaurants.results.data[i].latitude), lng: parseFloat(cityRestaurants.results.data[i].longitude) };
+        
+        const map = new google.maps.Map(document.getElementById("map" + [i]), {
+        zoom: 15,
+        center: mark,
+        });
+        
+        const marker = new google.maps.Marker({
+        position: mark,
+        map: map,
+        });        
+        
+
+    } 
+
+    setTimeout(initMap, 2000);
+
+    restInfo.append(restPic, restTitle, restType, restPrice)
+    restDesc.append(restDescript, restLink)
+    restBox.append(restInfo, restDesc, restMap)
+    restRow.appendChild(restBox);
+  
        
     };
 
     resultsEl.appendChild(restRow);   
-    setTimeout(initMap, 2000); 
 }
-
-function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
-        center: { lat: JSON.stringify(cityRestaurants.results.data[0].latitude.val()), lng: JSON.stringify(cityRestaurants.results.data[0].longitude.val()) },
-    });
-    const infoWindow = new google.maps.InfoWindow({
-        content: "",
-        disableAutoPan: true,
-    });
-
-    // Add some markers to the map.
-    const eqfeed_callback = function (cityData) {
-        for (let i = 0; i < cityData.results.data.length; i++) {
-          const coords = [cityData.results.data[i].latitude, cityData.results.data[i].longitude];
-          const latLng = new google.maps.LatLng(coords[1], coords[0]);
-      
-          new google.maps.Marker({
-            position: latLng,
-            map: map,
-          });
-        }
-      };
-    window.eqfeed_callback = eqfeed_callback;
-};
 
 
 // autocomplete function
