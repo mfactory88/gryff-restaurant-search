@@ -1,7 +1,7 @@
 header {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: #393e41;
 }
 
@@ -27,9 +27,15 @@ color: #f9c80e;
     padding: 12px 20px;
 }
 
-.logo img {width: 40px;}
-.menu {display: flex;}
-.menu li {padding-left: 50px;}
+.logo img {
+    width: 40px;
+}
+.menu {
+    display: flex;
+}
+.menu li {
+    padding-left: 50px;
+}
 
 .menu li a {
     display: inline-block;
