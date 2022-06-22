@@ -1,21 +1,16 @@
-const key = config.MY_API_KEY
+// API key, hidden 
+const key = config.MY_API_KEY;
+const googleKey = config.GOOGLE_KEY;
 
-var images = ['image1.jpg', 'image2.jpg', 'image3.jpg'],
-    index  = 0,
-    $top   = $('#hero');
+// Global Variables
+let resultsEl = document.querySelector("#results");
+const cities = [];
+let cityData = {};
+let cityRestaurants = {};
 
-setInterval(function() {
-   $top.animate({ opacity: 0 }, 500, function() {
-     $top.css('background-image', 'url('+images[++index]+')');
-     $top.animate({ opacity: 1 }, 500, function() {
-       if(index === images.length) index = 0;
-     });
-   });
-}, 6000);
-
-function searchRest (event) {
-    event.preventDefault();
-    function getCityId () {
+// This function converts the entered location into a location ID
+function getCityId() {
+    
         const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
         encodedParams.append("q", cityName);
@@ -31,6 +26,7 @@ function searchRest (event) {
             body: encodedParams
         };
 
+        // getting information from the server
         fetch('https://worldwide-restaurants.p.rapidapi.com/typeahead', options)
         .then((response) => {
             if (response.ok) {
@@ -41,15 +37,20 @@ function searchRest (event) {
         })
         .then(data => {
             console.log(data);
-            localStorage.setItem("city id", JSON.stringify(data))
+            // pushes the city to an array, which is then saved to localstorage
+            cities.push(cityName)
+            // pushes the returned data to an object, which will be called later
+            cityData = data
+            localStorage.setItem("cities", JSON.stringify(cities))
         })
+        .then(searchRest)
         .catch((error) => console.error("FETCH ERROR:", error));
     
-    };
+};
 
-    getCityId();
-
-    let cityData = JSON.parse(localStorage.getItem("city id"));
+// this is the function to search for the highest rated restaurants, using the city ID returned from the previous function
+function searchRest() {
+    
     console.log(cityData)
 
     let name = cityData.results.data[0].result_object.location_id;
@@ -74,16 +75,116 @@ function searchRest (event) {
     fetch('https://worldwide-restaurants.p.rapidapi.com/search', options)
     .then((response) => {
         if (response.ok) {
-          return response.json();
+            return response.json();
         } else {
-          throw new Error("Sorry, we were unable to complete your request.");
+            throw new Error("Sorry, we were unable to complete your request.");
         }
-      })
-      .then(data => {
+        })
+        .then(data => {
         console.log(data);
-        localStorage.setItem("restaurants", JSON.stringify(data))
+        // pushes data to object
+        cityRestaurants = data;
       })
-      .catch((error) => console.error("FETCH ERROR:", error));
+      .then(showResults)
+      .catch((error) => console.error("FETCH ERROR:", error)); 
+    
 };
 
-$('#restaurant-search').on('click', searchRest);
+// displaying the returned results on the page
+function showResults () {
+    let restRow = document.createElement("div");
+    restRow.className = "results"
+    console.log(cityRestaurants);
+
+    // results are returned in an array, this loops through the results to display them on the page
+    for (let i = 0; i < 10; i++) {
+        let restBox = document.createElement("div");
+        restBox.className = "restaurant-box card";
+
+        restPic = document.createElement("div")
+        restPic.className = "restaurant-image card-image"
+        restPic.innerHTML = "<img src=" + cityRestaurants.results.data[i].photo.images.small.url + ">"
+
+        restTitle = document.createElement("h2");
+        restTitle.className = "title is-centered"
+        restTitle.textContent = cityRestaurants.results.data[i].name
+
+        
+        restType = document.createElement("h3")
+        restType.className = "cuisine-type subtitle is-centered";
+        restType.textContent = cityRestaurants.results.data[i].cuisine[0].name + ", " + cityRestaurants.results.data[i].cuisine[1].name
+        
+
+        restPrice = document.createElement("div");
+        restPrice.className = "rest-price "
+        restPrice.innerHTML = "<h3>" + cityRestaurants.results.data[i].price_level + "</h3>"
+
+        restBox.append(restPic, restTitle, restType, restPrice)
+        restRow.appendChild(restBox);
+
+       
+    };
+
+    resultsEl.appendChild(restRow);   
+    setTimeout(initMap, 2000); 
+}
+
+function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: { lat: JSON.stringify(cityRestaurants.results.data[0].latitude.val()), lng: JSON.stringify(cityRestaurants.results.data[0].longitude.val()) },
+    });
+    const infoWindow = new google.maps.InfoWindow({
+        content: "",
+        disableAutoPan: true,
+    });
+
+    // Add some markers to the map.
+    const eqfeed_callback = function (cityData) {
+        for (let i = 0; i < cityData.results.data.length; i++) {
+          const coords = [cityData.results.data[i].latitude, cityData.results.data[i].longitude];
+          const latLng = new google.maps.LatLng(coords[1], coords[0]);
+      
+          new google.maps.Marker({
+            position: latLng,
+            map: map,
+          });
+        }
+      };
+    window.eqfeed_callback = eqfeed_callback;
+};
+
+
+// autocomplete function
+// $( function () {
+//     let availableCity = [];
+//     const options = {
+//         method: 'GET',
+//         headers: {
+//             'X-RapidAPI-Key': key,
+//             'X-RapidAPI-Host': 'google-maps28.p.rapidapi.com'
+//         }
+//     };
+    
+//     fetch('https://google-maps28.p.rapidapi.com/maps/api/place/queryautocomplete/json?input=' + $('#search-bar').val() + '&language=en', options)
+//     .then((response) => {
+//         if (response.ok) {
+//             return response.json();
+//         } else {
+//             throw new Error("Sorry, we were unable to complete your request.");
+//         }
+//         })
+//         .then(data => {
+//         console.log(data);
+//         availableCity.push(JSON.stringify(data));
+//       })
+//       .catch((error) => console.error("FETCH ERROR:", error));
+
+ 
+//         $('#search-bar').autocomplete({
+//             source: availableCity.predictions
+//         });
+    
+// });
+
+$('#search-button').on('click', getCityId);
