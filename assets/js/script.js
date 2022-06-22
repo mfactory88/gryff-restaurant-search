@@ -43,9 +43,8 @@ function getCityId() {
             cityData = data
             localStorage.setItem("cities", JSON.stringify(cities))
         })
+        .then(searchRest)
         .catch((error) => console.error("FETCH ERROR:", error));
-
-    setTimeout(searchRest, 2000);
     
 };
 
@@ -86,10 +85,8 @@ function searchRest() {
         // pushes data to object
         cityRestaurants = data;
       })
-      .catch((error) => console.error("FETCH ERROR:", error));
-
-
-      setTimeout(showResults, 7000);
+      .then(showResults)
+      .catch((error) => console.error("FETCH ERROR:", error)); 
     
 };
 
