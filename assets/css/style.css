@@ -35,7 +35,7 @@ header nav button {
 
 .hero {
     justify-content: center;
-    background-image: url(./images/image3.jpg);
+    background-image: url(../images/image3.jpg);
     border: #393e41 solid .5rem;
     padding: 3rem;
     background-size: cover;
