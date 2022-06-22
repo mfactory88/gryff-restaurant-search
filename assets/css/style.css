@@ -215,6 +215,9 @@ header nav {
     height: 500px;
 }
 
+.link {
+    margin-top: 20px;
+}
 
 @media screen and (max-width: 768px) {
     .search-criteria {
