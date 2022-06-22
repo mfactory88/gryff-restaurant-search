@@ -71,11 +71,11 @@ function searchRest (event) {
         .then(data => {
         console.log(data);
         localStorage.setItem("restaurants", JSON.stringify(data))
-      })
-      .catch((error) => console.error("FETCH ERROR:", error));
+    })
+    .catch((error) => console.error("FETCH ERROR:", error));
 
 
-      showResults();
+    showResults();
 };
 
 function showResults () {
@@ -96,4 +96,4 @@ function showResults () {
     results.appendChild(restRow);    
 }
 
-$('#restaurant-search').on('click', searchRest);
+$('#search-button').on('click', searchRest);
