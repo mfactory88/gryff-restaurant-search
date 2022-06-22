@@ -6,52 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bulma linked stylesheet goes here -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
     <title>MegaBytes</title>
 </head>
 <body>
     <header>
         <h1>Mega<span>Bytes</span></h1>
         <nav>
-            <button>Home</button>
-            <button>Search</button>
-            <button>Recently Viewed</button>
+            <ul class='nav-bar'>
+                <input type='checkbox' id='check' />
+                <span class="menu">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Search</a></li>
+                    <li><a href="">Recently Viewed</a></li>
+                    <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                </span>
+                <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+            </ul>
         </nav>
     </header>
-    <section class="hero">
-        <h2>Slogan</h2>
-        <form>
-            <input id="search-bar" type="search" placeholder="search"/>
-            <select id="category 1">
-                    <option label="a" value="a"></option>
-                    <option label="b" value="b"></option>
-                    <option label="c" value="c"></option>
-            </select>
-            <select id="category 2">
-                <option label="a" value="a"></option>
-                <option label="b" value="b"></option>
-                <option label="c" value="c"></option>
-            </select>
-            <select id="category 3">
-                <option label="a" value="a"></option>
-                <option label="b" value="b"></option>
-                <option label="c" value="c"></option>
-            </select>
-        </form>
+    <section class="hero" id="hero">
+        <h2></h2>
+        <div class="container">
+            <div id="search-container">        
+                <input id="search-bar" type="search" placeholder="Enter a Location"/>
+                <button id="search-button" class="button">SEARCH RESTAURANTS</button>
+            </div>
+            <form class="search-criteria">
+                <select id="category 1">
+                        <option class="options" label="Cuisine Type" value="a"></option>
+                        <option class="options" label="b" value="b"></option>
+                        <option class="options" label="c" value="c"></option>
+                </select>
+                <select id="category 2">
+                    <option class="options" label="Dietary Restrictions" value="a"></option>
+                    <option class="options" label="Halaal" value="Halaal"></option>
+                    <option class="options" label="Vegetarian" value=""></option>
+                    <option class="options" label="Vegan" value="d"></option>
+                    <option class="options" label="Gluten-Free" value="e"></option>
+                </select>
+                <select id="category 3">
+                    <option class="options" label="Price Range" value="a"></option>
+                    <option class="options" label="$-$$" value="b"></option>
+                    <option class="options" label="c" value="c"></option>
+                </select>
+            </form>  
+        </div>
     </section>
 
-    <section class="results">
-        <div class="box-container">Box 1</div>
-        <div class="box-container">Box 2</div>
-        <div class="box-container">Box 3</div>
+    <section id="results" class="results">
     </section>
 
     <footer> <p>Copyright © 2022 by smallbytes</p>
-        <a href="">Back to top</a>
+        <a href="#nav">Back to top</a>
     </footer>
+    
     
     <!--Jquery script here-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp7QjCdvkHIIRRzJv86VFTbLEIJcryTpU&callback="></script>
+    <script type="text/javascript" src="./config.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
