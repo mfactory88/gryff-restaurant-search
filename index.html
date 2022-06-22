@@ -20,7 +20,19 @@
                 <span class="menu">
                     <li><a href="">Home</a></li>
                     <li><a href="">Search</a></li>
-                    <li><a href="">Recently Viewed</a></li>
+                    <div class="dropdown is-active">
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>Recently Viewed</span>
+                            <span class="icon is-small">
+                              <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div id="dropdown" class="dropdown-content"></div>
+                        </div>
+                      </div>
                     <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
                 </span>
                 <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>

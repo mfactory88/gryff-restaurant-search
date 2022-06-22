@@ -169,6 +169,18 @@ function showResults () {
     resultsEl.appendChild(restRow);   
 }
 
+function recentlyViewed() {
+    let city = JSON.parse(localStorage.getItem('cities'))
+
+    for (let i = 0; i < city.length; i++) {
+        let dropMenu = document.querySelector("#dropdown")
+        let dropDown = document.createElement("li")
+        dropDown.innerHTML = "<a href='#' class='dropdown-item' >" + city[i] + "</a>"
+
+        dropMenu.appendChild(dropDown)
+    }
+}
+
 
 // autocomplete function
 // $( function () {
@@ -202,4 +214,6 @@ function showResults () {
     
 // });
 
+recentlyViewed()
 $('#search-button').on('click', getCityId);
+
