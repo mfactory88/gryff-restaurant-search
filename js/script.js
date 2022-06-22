@@ -1,10 +1,10 @@
-//const key = config.MY_API_KEY
+const key = config.MY_API_KEY
 
-let results = document.querySelector("#results");
+let resultsEl = document.querySelector("#results");
+const cities = [];
 
-function searchRest (event) {
-    event.preventDefault();
-    function getCityId () {
+function getCityId () {
+
         const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
         encodedParams.append("q", cityName);
@@ -30,18 +30,24 @@ function searchRest (event) {
         })
         .then(data => {
             console.log(data);
-            localStorage.setItem("city id", JSON.stringify(data))
+            cities.push(cityName)
+            let cityData = JSON.stringify(data)
+            localStorage.setItem("cities", JSON.stringify(cities))
+            localStorage.setItem("ID", cityData);
         })
         .catch((error) => console.error("FETCH ERROR:", error));
+
+    searchRest();
     
-    };
+};
 
-    getCityId();
+function searchRest () {
 
-    let cityData = JSON.parse(localStorage.getItem("city id"));
-    console.log(cityData)
 
-    let name = cityData.results.data[0].result_object.location_id;
+    let city = JSON.parse(localStorage.getItem("ID"));
+    console.log(city)
+
+    let name = city.results.data[0].result_object.location_id;
     const encodedParams = new URLSearchParams();
     encodedParams.append("language", "en_US");
     encodedParams.append("limit", "30");
@@ -70,30 +76,40 @@ function searchRest (event) {
         })
         .then(data => {
         console.log(data);
-        localStorage.setItem("restaurants", JSON.stringify(data))
-    })
-    .catch((error) => console.error("FETCH ERROR:", error));
+        let results = JSON.stringify(data)
+        localStorage.setItem("results", results);
+      })
+      .catch((error) => console.error("FETCH ERROR:", error));
 
 
-    showResults();
+      showResults();
+    
 };
 
 function showResults () {
     let restRow = document.createElement("div");
     restRow.className = "results"
 
-    let restaurants = JSON.parse(localStorage.getItem("restaurants"));
+    let cityId = JSON.parse(localStorage.getItem("results"));
 
     for (i = 0; i < 10; i++) {
         let restBox = document.createElement("div");
         restBox.className = "restaurant-box";
 
-        restBox.innerHTML = "<h2>" + restaurants.results.data[i].name + "</h2><br><p>" + restaurants.results.data[i].description + "</p>";
+        restPic = document.createElement("div")
+        restPic.innerHTML = "<img src=" + cityId.results.data[i].photo.images.thumbnail.url + ">"
 
+        restTitle = document.createElement("h2");
+        restTitle.textContent = cityId.results.data[i].name
+
+        restPrice = document.createElement("div");
+        restPrice.innerHTML = "<h3>" + cityId.results.data[i].price_level + "<span>" + cityId.results.data[i].price + "</span></h3>"
+
+        restBox.append(restPic, restTitle, restPrice)
         restRow.appendChild(restBox);
     };
 
-    results.appendChild(restRow);    
+    resultsEl.appendChild(restRow);    
 }
 
-$('#search-button').on('click', searchRest);
+$('#search-button').on('click', getCityId);
