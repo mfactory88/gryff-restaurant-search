@@ -54,7 +54,10 @@ function searchRest() {
     
     console.log(cityData)
 
-    let name = cityData.results.data[0].result_object.location_id;
+    let city = JSON.parse(localStorage.getItem("ID"));
+    console.log(city)
+
+    let name = city.results.data[0].result_object.location_id;
     const encodedParams = new URLSearchParams();
     encodedParams.append("language", "en_US");
     encodedParams.append("limit", "30");
