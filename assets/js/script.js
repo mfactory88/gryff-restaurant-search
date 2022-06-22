@@ -102,7 +102,7 @@ function showResults () {
         restBox.className = "restaurant-box card";
 
         let restInfo = document.createElement("div")
-        restInfo.className = ""
+        restInfo.className = "is-one-third-desktop column "
 
         restPic = document.createElement("div")
         restPic.className = "restaurant-image card-image"
@@ -123,7 +123,7 @@ function showResults () {
         restPrice.innerHTML = "<h3>" + cityRestaurants.results.data[i].price_level + "</h3>"
 
         restDesc = document.createElement("div")
-        restDesc.className = 'description'
+        restDesc.className = 'description is-one-third-desktop column '
 
         restDescript = document.createElement('p')
         restDescript.textContent = cityRestaurants.results.data[i].description
@@ -134,14 +134,15 @@ function showResults () {
         
 
         restMap = document.createElement("div")
-        restMap.id = "map"
+        restMap.id = "map" + [i]
+        restMap.className = "map is-one-third-desktop column "
 
         function initMap() {
         
-        const mark = { lat: parseFloat(cityRestaurants.results.data[i].latitude.value), lng: parseFloat(cityRestaurants.results.data[i].longitude.value) };
+        const mark = { lat: parseFloat(cityRestaurants.results.data[i].latitude), lng: parseFloat(cityRestaurants.results.data[i].longitude) };
         
-        const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
+        const map = new google.maps.Map(document.getElementById("map" + [i]), {
+        zoom: 15,
         center: mark,
         });
         
