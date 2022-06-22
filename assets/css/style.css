@@ -17,6 +17,10 @@ header h1 span {
 color: #f9c80e;
 }
 
+header nav {
+    margin: 1rem 1rem 1rem 1rem;
+}
+
 .nav-bar {
     width: 100%;
     display: flex;
@@ -84,6 +88,7 @@ color: #f9c80e;
 .hero {
     justify-content: center;
     background-image: url(./images/image3.jpg);
+    background-image: url(../images/image3.jpg);
     border: #393e41 solid .5rem;
     padding: 3rem;
     background-size: cover;

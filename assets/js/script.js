@@ -133,6 +133,7 @@ function showResults () {
 
     resultsEl.appendChild(restRow);   
     initMap(); 
+    setTimeout(initMap, 2000); 
 }
 
 function initMap() {
