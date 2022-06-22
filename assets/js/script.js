@@ -135,7 +135,7 @@ function showResults () {
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
-        center: { lat: cityData.results.data[0].latitude.value, lng: cityData.results.data[0].longitude.value },
+        center: { lat: JSON.stringify(cityRestaurants.results.data[0].latitude.val()), lng: JSON.stringify(cityRestaurants.results.data[0].longitude.val()) },
     });
     const infoWindow = new google.maps.InfoWindow({
         content: "",
