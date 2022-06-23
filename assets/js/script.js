@@ -201,8 +201,8 @@ function showResults () {
         restDesc.append(restDescript, restLink)
         restBox.append(restInfo, restDesc, restMap)
         restRow.appendChild(restBox);
-  
-       
+
+    
     };
 
     resultsEl.appendChild(restRow);   
