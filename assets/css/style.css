@@ -87,7 +87,6 @@ header nav {
 
 .hero {
     justify-content: center;
-    background-image: url(./images/image3.jpg);
     background-image: url(../images/image3.jpg);
     padding: 3rem;
     background-size: cover;
@@ -195,12 +194,6 @@ header nav {
     color: #FFFFFF;
 }
 
-.restaurant-box {
-    display: flex;
-    flex-direction: column;
-    border: solid black .5rem;
-}
-
 .box-container {
     display: inline;
     margin: 2rem;
@@ -227,25 +220,10 @@ font-size: 14px;
     border-radius: 5px;
 }
 
-@media screen and (max-width:420px) {
-    #search-container{
-
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .container{
-
-        display: flex;
-        width:auto;
-        justify-content: center;
-    }
-
-
+.link {
+    margin-top: 20px;
 }
+
 
 @media screen and (max-width: 768px) {
     .search-criteria {
