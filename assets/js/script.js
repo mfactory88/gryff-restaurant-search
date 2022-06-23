@@ -169,15 +169,26 @@ function showResults () {
     resultsEl.appendChild(restRow);   
 }
 
+
+
 function recentlyViewed() {
     let city = JSON.parse(localStorage.getItem('cities'))
 
     for (let i = 0; i < city.length; i++) {
-        let dropMenu = document.querySelector("#dropdown")
-        let dropDown = document.createElement("li")
+        let dropMenu = document.querySelector("#drop")
+        let dropDown = document.createElement("div")
+        dropDown.id = 'recent' + city[i]
         dropDown.innerHTML = "<a href='#' class='dropdown-item' >" + city[i] + "</a>"
 
         dropMenu.appendChild(dropDown)
+
+        dropDown.addEventListener('click', refresh)
+
+        function refresh () {
+            let dropRef = document.querySelector('city' + [i]);
+            city.unshift(dropRef.value);
+            setTimeout((window.refresh), 2000)
+        }
     }
 }
 
