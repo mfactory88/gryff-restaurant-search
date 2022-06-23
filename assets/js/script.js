@@ -247,6 +247,4 @@ window.onload = function() {
     }
 }
 
-
-recentlyViewed()
 $('#search-button').on('click', getCityId);
