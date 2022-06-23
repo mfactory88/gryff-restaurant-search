@@ -34,18 +34,14 @@ header nav {
     justify-content: space-between;
     align-items: center;
     list-style: none;
-    position: relative;
-    padding:20px;
 }
 
 .menu {
-    position:relative;
     align-items: center;
     display: flex;
-    /* margin-left: 150px; */
 }
 .menu li {
-    padding-left: 50px;
+    padding: 20px;
 }
 
 .menu li a {
@@ -58,6 +54,7 @@ header nav {
     text-transform: uppercase;
 }
 .menu li a:hover {
+    transition: .5s;
     color:#f9c80e;
 }
 
@@ -131,13 +128,19 @@ p {
 }
 
 .button {
-    outline: none;
+    text-transform: uppercase;
+    border: none;
     background-color: #393e41;
     color: #ff6f59;
     font-weight: bold;
 }
 
+nav .button {
+    font-weight: 380;
+}
+
 .button:hover {
+    transition: .5s;
     color: #f9c80e;
 }
 
@@ -161,7 +164,6 @@ p {
 }
 
 .results {
-    background-color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -231,6 +233,7 @@ p a {
 }
 
 p a:hover {
+    transition: .5s;
     color: #ff6f59;
 }
 
@@ -239,6 +242,7 @@ footer a {
 }
 
 footer a:hover {
+    transition: .5s;
     color: #ff6f59;
 }
 
@@ -249,7 +253,7 @@ footer p {
 }
 
 .rest-desc {
-font-weight: 375;
+font-weight: 380;
 font-size: 16px;
 }
 
