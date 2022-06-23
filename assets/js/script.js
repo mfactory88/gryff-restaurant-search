@@ -84,9 +84,9 @@ function searchRest() {
         console.log(data);
         // pushes data to object
         cityRestaurants = data;
-      })
-      .then(showResults)
-      .catch((error) => console.error("FETCH ERROR:", error)); 
+    })
+    .then(showResults)
+    .catch((error) => console.error("FETCH ERROR:", error)); 
     
 };
 
@@ -114,7 +114,7 @@ function showResults () {
 
         
         restType = document.createElement("h3")
-        restType.className = "cuisine-type subtitle is-centered";
+        restType.className = "cuisine-type is-centered";
         restType.textContent = cityRestaurants.results.data[i].cuisine[0].name + ", " + cityRestaurants.results.data[i].cuisine[1].name
         
 
@@ -131,7 +131,7 @@ function showResults () {
         restLink = document.createElement("div")
         restLink.className = "link"
         restLink.innerHTML = "<p>See more information <a href='" + cityRestaurants.results.data[i].web_url + 
-        "'>here</a></p><br><p>Or visit the restaurant's website <a href='" + cityRestaurants.results.data[i].website + "'>here</a></p>"
+        "'>here</a></p><p>Or visit the restaurant's website <a href='" + cityRestaurants.results.data[i].website + "'>here</a></p>"
 
         
 
@@ -162,8 +162,7 @@ function showResults () {
     restDesc.append(restDescript, restLink)
     restBox.append(restInfo, restDesc, restMap)
     restRow.appendChild(restBox);
-  
-       
+
     };
 
     resultsEl.appendChild(restRow);   

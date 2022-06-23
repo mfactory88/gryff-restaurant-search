@@ -1,24 +1,31 @@
 header {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     background-color: #393e41;
+}
+
+header img {
+    margin-left: 30px;
+    max-width: 150px;
+    max-height: 95px;
+    align-items: center;
 }
 
 header h1 {
     font-weight:bold;
     margin: 1rem;
     font-size: 36px;
-    color: #ff6f59;
+    color: #f9c80e;
     display: inline-flex;
+    align-items: center;
 }
 
 header h1 span {
-color: #f9c80e;
+color: #ff6f59;
 }
 
 header nav {
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1.3rem 1rem 1rem 1rem;
 }
 
 .nav-bar {
@@ -28,14 +35,14 @@ header nav {
     align-items: center;
     list-style: none;
     position: relative;
-    padding: 12px 20px;
+    padding:20px;
 }
 
-.logo img {
-    width: 40px;
-}
 .menu {
+    position:relative;
+    align-items: center;
     display: flex;
+    /* margin-left: 150px; */
 }
 .menu li {
     padding-left: 50px;
@@ -50,6 +57,9 @@ header nav {
     position: relative;
     text-transform: uppercase;
 }
+.menu li a:hover {
+    color:#f9c80e;
+}
 
 .menu li a::after {
     content: "";
@@ -58,7 +68,7 @@ header nav {
     left: 0;
     width: 0;
     height: 1px;
-    background-color: brown;
+    background-color: #ff6f59;
     transition: 0.15s ease-in-out;
 }
 .menu li a:hover:after {
@@ -83,6 +93,10 @@ header nav {
     right: 20px;
 }
 
+p {
+    padding: .25rem 3rem;
+}
+
 #check {display: none;}
 
 .hero {
@@ -91,8 +105,8 @@ header nav {
     padding: 3rem;
     background-size: cover;
     background-position: center;
+    box-shadow: black 1rem 1rem;
 }
-
 .hero h2 {
     color: #f9c80e;
     display: flex;
@@ -117,6 +131,7 @@ header nav {
 }
 
 .button {
+    outline: none;
     background-color: #393e41;
     color: #ff6f59;
     font-weight: bold;
@@ -205,13 +220,37 @@ header nav {
     border:#393e41 .5rem solid
 }
 
-.title-img {
-    max-height: 380px;
+div img {
+    height: 300px;
+    width: 750px;
+    border-radius: 5px;
+}
+
+p a {
+    color: #f9c80e;
+}
+
+p a:hover {
+    color: #ff6f59;
+}
+
+footer a {
+    color: #f9c80e;
+}
+
+footer a:hover {
+    color: #ff6f59;
+}
+
+footer p {
+    background-color: #393e41;
+    color: #f9c80e;
+    padding-left: 15px;
 }
 
 .rest-desc {
 font-weight: 375;
-font-size: 14px;
+font-size: 16px;
 }
 
 .map {

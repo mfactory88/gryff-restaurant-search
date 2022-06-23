@@ -13,13 +13,14 @@
 </head>
 <body>
     <header>
-        <h1>Mega<span>Bytes</span></h1>
-        <nav>
-            <ul class='nav-bar'>
+        <img class="logo" src="./assets/images/logo.svg">
+        <h1 class="column">Mega<span>Bytes</span></h1>
+        <nav class="level">
+            <ul class='nav-bar level-right'>
                 <input type='checkbox' id='check' />
                 <span class="menu">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Search</a></li>
+                    <li><a href="#results">Home</a></li>
+                    <li><a href="https://github.com/mfactory88/gryff-restaurant-search" target="_blank">Our Repository</a></li>
                     <li><a href="">Recently Viewed</a></li>
                     <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
                 </span>
@@ -37,8 +38,9 @@
             <form class="search-criteria">
                 <select id="cuisine" class="select is-small">
                         <option class="options" label="Cuisine Type"></option>
-                        <option class="options" label="French" value="b"></option>
-                        <option class="options" label="Chinese" value="c"></option>
+                        <option class="options" label="French" value="French"></option>
+                        <option class="options" label="Chinese" value="Chinese"></option>
+                        <option class="options" label="American" value="American"></option>
                 </select>
                 <select id="diet" class="select is-small">
                     <option class="options" label="Dietary Restrictions"></option>
@@ -47,10 +49,10 @@
                     <option class="options" label="Vegan" value="Vegan"></option>
                     <option class="options" label="Gluten-Free" value="Gluten-Free"></option>
                 </select>
-                <select id="category 3">
-                    <option class="options" label="Price Range"></option>
-                    <option class="options" label="$-$$" value="b"></option>
-                    <option class="options" label="c" value="c"></option>
+                <select id="price" class="select is-small">
+                    <option class="options" label="Price range"></option>
+                    <option class="options" label="$-$$" value="low"></option>
+                    <option class="options" label="$$$-$$$$" value="medium"></option>
                 </select>
             </form>  
         </div>
@@ -59,8 +61,10 @@
     <section id="results" class="results">
     </section>
 
-    <footer> <p>Copyright © 2022 by smallbytes</p>
-        <a href="#nav">Back to top</a>
+    <footer>
+        <p class="level">Copyright © 2022 by smallbytes 
+            <a class="level-right" href="#hero">Back to Top</a>
+        </p>
     </footer>
     
     
