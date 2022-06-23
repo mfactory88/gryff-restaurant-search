@@ -8,6 +8,12 @@ const cities = [];
 let cityData = {};
 let cityRestaurants = {};
 
+//press enter key program
+// let btn = document.querySelector('button');
+// let reult = document.querySelector('')
+
+// document.body.addEventListener('keypress')
+
 // This function converts the entered location into a location ID
 function getCityId() {
 

@@ -15,6 +15,8 @@
 
 * GitHub:
 
+https://github.com/mfactory88/gryff-restaurant-search
+
 * Deployed:
 
 ### Technologies
