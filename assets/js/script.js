@@ -10,6 +10,8 @@ let cityRestaurants = {};
 
 // This function converts the entered location into a location ID
 function getCityId() {
+
+        $('#results').empty();
     
         const cityName = $("#search-bar").val();
         const encodedParams = new URLSearchParams();
@@ -46,7 +48,50 @@ function getCityId() {
         .then(searchRest)
         .catch((error) => console.error("FETCH ERROR:", error));
     
+    recentlyViewed();
+    
 };
+
+function searchRecent () {
+    $('#results').empty();
+
+    let city = JSON.parse(localStorage.getItem('cities'))
+    
+    const cityName = city[0]
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("q", cityName);
+    encodedParams.append("language", "en_US");
+
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'X-RapidAPI-Key': key,
+            'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com'
+        },
+        body: encodedParams
+    };
+
+    // getting information from the server
+    fetch('https://worldwide-restaurants.p.rapidapi.com/typeahead', options)
+    .then((response) => {
+        if (response.ok) {
+        return response.json();
+        } else {
+        throw new Error("Sorry, we were unable to complete your request.");
+        }
+    })
+    .then(data => {
+        console.log(data);
+        // pushes the city to an array, which is then saved to localstorage
+        cities.push(cityName)
+        // pushes the returned data to an object, which will be called later
+        cityData = data
+        localStorage.setItem("cities", JSON.stringify(cities))
+    })
+    .then(searchRest)
+    .catch((error) => console.error("FETCH ERROR:", error));
+}
 
 // this is the function to search for the highest rated restaurants, using the city ID returned from the previous function
 function searchRest() {
@@ -172,57 +217,40 @@ function showResults () {
 function recentlyViewed() {
     let city = JSON.parse(localStorage.getItem('cities'))
 
+    if (city) {
     for (let i = 0; i < city.length; i++) {
         let dropMenu = document.querySelector("#drop")
         let dropDown = document.createElement("div")
-        dropDown.id = 'recent' + city[i]
-        dropDown.innerHTML = "<a href='#' class='dropdown-item' >" + city[i] + "</a>"
+        dropDown.id = 'recent-' + city[i]
+        dropDown.value = city[i]
+        dropDown.innerHTML = "<a class='dropdown-item' >" + city[i] + "</a>"
 
         dropMenu.appendChild(dropDown)
 
-        dropDown.addEventListener('click', refresh)
+        dropDown.addEventListener('click', push)
 
-        function refresh () {
-            let dropRef = document.querySelector('city' + [i]);
-            city.unshift(dropRef.value);
-            setTimeout((window.refresh), 2000)
+        function push () {
+            city.unshift(dropDown.value);
+            localStorage.setItem('cities', JSON.stringify(city))
+            setTimeout(refresh, 2000)
         }
+    }
+}
+};
+
+function refresh () {
+    sessionStorage.setItem("reloading", "true");
+    document.location.reload()
+};
+
+window.onload = function() {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        searchRecent();
     }
 }
 
 
-// autocomplete function
-// $( function () {
-//     let availableCity = [];
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//             'X-RapidAPI-Key': key,
-//             'X-RapidAPI-Host': 'google-maps28.p.rapidapi.com'
-//         }
-//     };
-    
-//     fetch('https://google-maps28.p.rapidapi.com/maps/api/place/queryautocomplete/json?input=' + $('#search-bar').val() + '&language=en', options)
-//     .then((response) => {
-//         if (response.ok) {
-//             return response.json();
-//         } else {
-//             throw new Error("Sorry, we were unable to complete your request.");
-//         }
-//         })
-//         .then(data => {
-//         console.log(data);
-//         availableCity.push(JSON.stringify(data));
-//       })
-//       .catch((error) => console.error("FETCH ERROR:", error));
-
- 
-//         $('#search-bar').autocomplete({
-//             source: availableCity.predictions
-//         });
-    
-// });
-
 recentlyViewed()
 $('#search-button').on('click', getCityId);
-
