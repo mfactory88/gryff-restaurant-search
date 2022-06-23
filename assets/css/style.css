@@ -156,6 +156,26 @@ header nav button {
     height: 500px;
 }
 
+@media screen and (max-width:420px) {
+    #search-container{
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .container{
+
+        display: flex;
+        width:auto;
+        justify-content: center;
+    }
+
+
+}
+
 
 
 
