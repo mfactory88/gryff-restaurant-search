@@ -152,22 +152,20 @@ function showResults () {
         position: mark,
         map: map,
         });        
-        
+        };
 
-    } 
+        setTimeout(initMap, 2000);
 
-    setTimeout(initMap, 2000);
-
-    restInfo.append(restPic, restTitle, restType, restPrice)
-    restDesc.append(restDescript, restLink)
-    restBox.append(restInfo, restDesc, restMap)
-    restRow.appendChild(restBox);
+        restInfo.append(restPic, restTitle, restType, restPrice)
+        restDesc.append(restDescript, restLink)
+        restBox.append(restInfo, restDesc, restMap)
+        restRow.appendChild(restBox);
   
        
     };
 
     resultsEl.appendChild(restRow);   
-}
+};
 
 
 
