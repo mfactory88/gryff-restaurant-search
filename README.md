@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [General Information](#General-Inforamtion)
+* [Goals and Requirements](#Goals-and-Requirements)
 * [Link to Website](#Link-to-Website)
 * [Technologies](#Technologies)
 * [Funtionality](#Funtionality)
@@ -10,7 +11,24 @@
 
 ### General Information
 
-MegaBytes has built an application to find the top 10 searched restaurants in realtime, and allows the user to search for previously viewed cities.
+Our group, smallbytes has built an application to find the top 10 searched restaurants in realtime, and allows the user to search for previously viewed cities.
+
+### Goals and Requirements
+
+Projects are extremely important on our journey to becoming full-stack web developers. This project will be our first opportunity to show our collaborative skills and coding abilities. As a group, will use everything we've learned over the past six weeks to create a real-world front-end application.
+
+#### Requirements
+
+* Use a CSS framework other than Bootstrap.
+* Be deplyed to GitHub Pages.
+* Be interactive (i.e: accept and respond to user input).
+* Use at least two server-side APIs.
+* Does not use alerts, confirms, or prompts (use modals).
+* Use client-side storage to store persistent data.
+* Be responsive.
+* Have a polished UI.
+* Have a clean repository that meets quality coding standards.
+* Have a quality README.
 
 ### Link to Website
 
@@ -26,7 +44,7 @@ This project contains the following features
 * CSS
 * JavaScript
 * jQuery
-* Bulma Framework
+* Bulma framework
 * Google Maps API
 
 ### Funtionality
