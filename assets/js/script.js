@@ -83,11 +83,7 @@ function searchRecent () {
     })
     .then(data => {
         console.log(data);
-        // pushes the city to an array, which is then saved to localstorage
-        cities.push(cityName)
-        // pushes the returned data to an object, which will be called later
         cityData = data
-        localStorage.setItem("cities", JSON.stringify(cities))
     })
     .then(searchRest)
     .catch((error) => console.error("FETCH ERROR:", error));
