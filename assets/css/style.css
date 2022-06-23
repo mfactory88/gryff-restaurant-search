@@ -227,11 +227,6 @@ font-size: 14px;
     border-radius: 5px;
 }
 
-<<<<<<< HEAD
-.link {
-    margin-top: 20px;
-}
-=======
 @media screen and (max-width:420px) {
     #search-container{
 
@@ -252,7 +247,6 @@ font-size: 14px;
 
 }
 
->>>>>>> 2ad29551527b028db6af15d2cd9edd16fb4f90e6
 
 
 @media screen and (max-width: 768px) {
