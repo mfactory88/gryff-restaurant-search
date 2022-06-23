@@ -38,3 +38,4 @@ This project contains the following features
 * Finds restaurant information such as a breif description of the location, price range, diet, map links, and direct link to the restaurants website.
 
 ### Project Demo
+![MegaBytes](https://user-images.githubusercontent.com/102685046/175390884-5295e5f6-1e08-4e73-b4da-ea6d42c0bdfc.gif)
