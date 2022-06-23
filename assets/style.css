@@ -259,5 +259,36 @@ color: #f9c80e;
     .fa-bars {
         justify-content: center;
     }
+}
+
+   
+    /*.restaurant-box {
+
+        height: 1500px;
+    }
+
+    .map {
+
+        height: 20rem;
+
+        width: 20rem;
+
+        margin-top: 0px;
+
+        margin-bottom: 20px;
+
+        padding: 5px;
+
+       
+    }
+    .description {
+
+        margin-bottom: 0px;
+    }
+
+    
+    
+
+
 
 }
