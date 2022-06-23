@@ -1,4 +1,4 @@
-# Resturant Search Guide
+# Top 10 Restaurant Search Guide
 
 ## Table of Contents
 
@@ -10,13 +10,11 @@
 
 ### General Information
 
-MegaBytes has built an application to find restaurants in realtime, and allows the user to search for previously viewed cities.
+MegaBytes has built an application to find the top 10 searched restaurants in realtime, and allows the user to search for previously viewed cities.
 
 ### Link to Website
 
-* GitHub:
-
-    https://github.com/mfactory88/gryff-restaurant-search
+* GitHub: https://github.com/mfactory88/gryff-restaurant-search
 
 * Deployed:
 
@@ -28,7 +26,7 @@ This project contains the following features
 * CSS
 * JavaScript
 * jQuery
-* Bulma framework
+* Bulma Framework
 * Google Maps API
 
 ### Funtionality
