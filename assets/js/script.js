@@ -129,7 +129,9 @@ function showResults () {
         restDescript.textContent = cityRestaurants.results.data[i].description
 
         restLink = document.createElement("div")
-        restLink.innerHTML = "<p>See more information at <a href='" + cityRestaurants.results.data[i].web_url + "'>" + cityRestaurants.results.data[i].web_url + "</a>"
+        restLink.className = "link"
+        restLink.innerHTML = "<p>See more information <a href='" + cityRestaurants.results.data[i].web_url + 
+        "'>here</a></p><br><p>Or visit the restaurant's website <a href='" + cityRestaurants.results.data[i].website + "'>here</a></p>"
 
         
 
