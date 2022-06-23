@@ -3,7 +3,6 @@
 ## Table of Contents
 
 * [General Information](#General-Inforamtion)
-* [Goal and requirements](#Goal-and-requirements)
 * [Link to Website](#Link-to-Website)
 * [Technologies](#Technologies)
 * [Funtionality](#Funtionality)
@@ -11,11 +10,13 @@
 
 ### General Information
 
+MegaBytes has built an application to find restaurants in realtime, and allows the user to search for previously viewed cities.
+
 ### Link to Website
 
 * GitHub:
 
-https://github.com/mfactory88/gryff-restaurant-search
+    https://github.com/mfactory88/gryff-restaurant-search
 
 * Deployed:
 
@@ -28,7 +29,12 @@ This project contains the following features
 * JavaScript
 * jQuery
 * Bulma framework
+* Google Maps API
 
 ### Funtionality
+
+* Finds the top 10 restaurants based on your searched city.
+
+* Finds restaurant information such as a breif description of the location, price range, diet, map links, and direct link to the restaurants website.
 
 ### Project Demo
