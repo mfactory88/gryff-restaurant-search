@@ -140,13 +140,13 @@ function showResults () {
     // results are returned in an array, this loops through the results to display them on the page
     for (let i = 0; i < 10; i++) {
         let restBox = document.createElement("div");
-        restBox.className = "restaurant-box card tile is-inline";
+        restBox.className = "restaurant-box column card tile level";
 
         let restInfo = document.createElement("div")
         restInfo.className = "is-one-third-desktop column title-img"
 
         restPic = document.createElement("div")
-        restPic.className = "restaurant-image card-image is-inline is-one-third-desktop"
+        restPic.className = "restaurant-image card-image is-one-third-desktop"
         restPic.innerHTML = "<img src=" + cityRestaurants.results.data[i].photo.images.large.url + ">"
 
         restTitle = document.createElement("h2");
@@ -164,10 +164,10 @@ function showResults () {
         restPrice.innerHTML = "<h3>" + cityRestaurants.results.data[i].price_level + "</h3>"
         restMap = document.createElement("div")
         restMap.id = "map" + [i]
-        restMap.className = "map column level-right"
+        restMap.className = "map column is-one-third-desktop"
 
         restDesc = document.createElement("div")
-        restDesc.className = 'description is-one-third-desktop column rest-desc is-inline'
+        restDesc.className = 'description is-one-third-desktop column rest-desc '
 
         restDescript = document.createElement('p')
         restDescript.textContent = cityRestaurants.results.data[i].description
