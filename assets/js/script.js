@@ -134,19 +134,19 @@ function searchRest() {
 // displaying the returned results on the page
 function showResults () {
     let restRow = document.createElement("div");
-    restRow.className = "results tile is-parent"
+    restRow.className = "results tile is-parent level"
     console.log(cityRestaurants);
 
     // results are returned in an array, this loops through the results to display them on the page
     for (let i = 0; i < 10; i++) {
         let restBox = document.createElement("div");
-        restBox.className = "restaurant-box card tile";
+        restBox.className = "restaurant-box card tile is-inline";
 
         let restInfo = document.createElement("div")
         restInfo.className = "is-one-third-desktop column title-img"
 
         restPic = document.createElement("div")
-        restPic.className = "restaurant-image card-image"
+        restPic.className = "restaurant-image card-image is-inline is-one-third-desktop"
         restPic.innerHTML = "<img src=" + cityRestaurants.results.data[i].photo.images.large.url + ">"
 
         restTitle = document.createElement("h2");
@@ -162,9 +162,12 @@ function showResults () {
         restPrice = document.createElement("div");
         restPrice.className = "rest-price "
         restPrice.innerHTML = "<h3>" + cityRestaurants.results.data[i].price_level + "</h3>"
+        restMap = document.createElement("div")
+        restMap.id = "map" + [i]
+        restMap.className = "map column level-right"
 
         restDesc = document.createElement("div")
-        restDesc.className = 'description is-one-third-desktop column rest-desc'
+        restDesc.className = 'description is-one-third-desktop column rest-desc is-inline'
 
         restDescript = document.createElement('p')
         restDescript.textContent = cityRestaurants.results.data[i].description
@@ -175,11 +178,6 @@ function showResults () {
         "'>here</a></p><p>Or visit the restaurant's website <a href='" + cityRestaurants.results.data[i].website + "'>here</a></p>"
 
         
-
-        restMap = document.createElement("div")
-        restMap.id = "map" + [i]
-        restMap.className = "map is-one-third-desktop column "
-
         function initMap() {
         
         const mark = { lat: parseFloat(cityRestaurants.results.data[i].latitude), lng: parseFloat(cityRestaurants.results.data[i].longitude) };

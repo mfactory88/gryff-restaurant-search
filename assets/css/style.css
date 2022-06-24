@@ -176,16 +176,24 @@ nav .button {
 
 .restaurant-box {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    /* border: solid #f9c80e .25rem; */
     background-color: #5f676c;
+    width: 100%;
+    
 }
 
 .restaurant-box h2 {
     color:#ff6f59;
     font-weight: bold;
     text-shadow: 0 0 2px black;
+}
+
+.description {
+    color: #FFFFFF;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
 }
 
 .restaurant-image {
@@ -201,12 +209,6 @@ nav .button {
 
 .rest-price {
     color: #FFFFFF;
-}
-
-.restaurant-box {
-    display: flex;
-    flex-direction: column;
-    border: solid black .5rem;
 }
 
 .box-container {
@@ -266,12 +268,7 @@ font-size: 16px;
 }
 
 
-@media screen and (max-width: 768px) {
-    .search-criteria {
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
-    }
+@include mobile {
     #search-container {
         flex-direction: column;
         width: 100%;
@@ -303,6 +300,7 @@ font-size: 16px;
         transition: all 0.2s ease-in-out;
     }
     
+
     .menu li {
         margin-top: 40px;
     }
@@ -321,36 +319,6 @@ font-size: 16px;
     .fa-bars {
         justify-content: center;
     }
-}
-
-   
-    /*.restaurant-box {
-
-        height: 1500px;
-    }
-
-    .map {
-
-        height: 20rem;
-
-        width: 20rem;
-
-        margin-top: 0px;
-
-        margin-bottom: 20px;
-
-        padding: 5px;
-
-       
-    }
-    .description {
-
-        margin-bottom: 0px;
-    }
-
-    
-    
-
 
 
 }
